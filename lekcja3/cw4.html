@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Vue – events</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(5, 50px);
+            gap: 8px;
+            margin-top: 20px;
+        }
+
+        button {
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            background: #ccc;
+            cursor: pointer;
+        }
+
+        button.active {
+            background: #3cb371;
+            color: white;
+        }
+
+        button:disabled {
+            background: #999;
+            cursor: not-allowed;
+        }
+
+        select {
+            padding: 6px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="app">
+        <h2>04. events</h2>
+
+        <p>select → atrybut disabled</p>
+
+        <select v-model="selected">
+            <option disabled value="">[select]</option>
+            <option v-for="n in numbers" :key="n" :value="n">
+                {{ n }}
+            </option>
+        </select>
+
+        <div class="grid">
+            <button v-for="(n, index) in buttons" :key="index" :disabled="selected !== n"
+                :class="{ active: selected === n }" @click="showValue(n)">
+                {{ n }}
+            </button>
+        </div>
+    </div>
+
+    <script>
+        const { createApp } = Vue;
+
+        createApp({
+            data() {
+                return {
+                    selected: '',
+                    numbers: [1, 2, 3, 4, 5, 6, 7],
+                    buttons: [
+                        1, 2, 3, 3, 3,
+                        4, 4, 4, 7, 1,
+                        2, 3, 3, 2, 1,
+                        5, 5, 6, 4, 3,
+                        1, 5, 1, 2, 5
+                    ]
+                };
+            },
+            methods: {
+                showValue(value) {
+                    alert('text in button = ' + value);
+                }
+            }
+        }).mount('#app');
+    </script>
+
+</body>
+
+</html>

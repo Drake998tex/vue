@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <style>
+        .linia {
+
+            height: 2px;
+            background-color: green;
+            margin: 7px;
+        }
+
+        #kolor {
+            color: green;
+        }
+
+        .ramka {
+        border: 3px dotted black;
+        display: inline-block;
+        margin: 7px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <h1>04. Components</h1>
+        <br>
+        <div class="linia"> </div>
+        <br>
+        <h2 id="kolor">komunikacja rodzic (aplikacja) -> dziecko (komponent) -> dziecko (komponent) => zmiana prop przez aplikacje</h2>
+        <br>
+        <button @click="modify">dodaj 1</button>
+        <br>
+
+        <test-component v-bind:prop-x="x"></test-component>
+        <test-component v-bind:prop-x="x"></test-component>
+    </div>
+
+    <template id="template">
+        <div class="ramka">
+            <h2>{{this.propX}}</h2>
+            <pre>{{JSON.stringify(this.$props, null,5)}}</pre>
+        </div>
+       
+        </template>
+    <script>
+        const TestComponent = {
+
+            template: "#template",
+
+            data() {
+
+            },
+            methods: {
+
+            },
+            props: ["propX"]
+        }
+        Vue.createApp({
+
+            data() {
+                return {
+                    x : 100
+                }
+            },
+
+            methods: {
+                modify() {
+                    this.x = Math.pow(this.x, 2)
+                }
+
+            },
+
+            components: {
+                "test-component":TestComponent
+            }
+
+
+        }).mount("#app")
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <style>
+        .linia {
+
+            height: 2px;
+            background-color: green;
+            margin: 7px;
+        }
+
+        #kolor {
+            color: green;
+        }
+
+        .ramka {
+        border: 3px dotted black;
+        display: inline-block;
+        margin: 7px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <h1>05. Components</h1>
+        <br>
+        <div class="linia"> </div>
+        <br>
+        <h2 id="kolor">komunikacja rodzic(aplikacja) -> dziecko(komponent) -> zmiana prop przez aplikacje</h2>
+        <br>
+        <button @click="modify">aplikacja zmienia domyślnie dane i wstawia je do wszyystkich komponentow</button>
+        <br>
+
+        <comp-a v-bind:h="header" v-bind:n="firstName" v-bind:a="age"></comp-a>
+        <comp-a v-bind:h="header" v-bind:n="firstName" v-bind:a="age"></comp-a>
+        <comp-a v-bind:h="header" v-bind:n="firstName" v-bind:a="age"></comp-a>
+       
+    </div>
+    <template id="template">
+        <div class="ramka">
+            <h1>{{this.h}}</h1>
+            <p>Imie:{{ this.n ??"brak" }}</p>
+            <p>Wiek:{{ this.a ??"brak"}}</p>
+            <pre>{{JSON.stringify(this.$props, null,5)}}</pre>
+        </div>
+    </template>
+    <script>
+         const CompA= {
+            template:"#template",
+            data() {
+               
+            },
+            methods: {
+
+            },
+            props: ["h", "n", "a"]
+         }
+        Vue.createApp({
+
+            data() {
+                return {
+                    header: "default header",
+                    firstName: "default name",
+                    age: "defaut age"
+                }
+            },
+
+            methods: {
+                modify() {
+                    this.header= "Wizytówka"
+                    this.firstName= "Jan nowak"
+                    this.age="23"
+                }
+            },
+
+            components: {
+                "comp-a":CompA
+            }
+
+
+        }).mount("#app")
+
+    </script>
+</body>
+
+</html>

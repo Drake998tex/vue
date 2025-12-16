@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <style>
+        .linia {
+
+            height: 2px;
+            background-color: green;
+            margin: 7px;
+        }
+
+        #kolor {
+            color: green;
+        }
+        .ramka {
+        border: 3px dotted black;
+        display: inline-block;
+        margin: 7px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <h1>06. Components</h1>
+        <br>
+        <div class="linia"> </div>
+        <br>
+        <h2 id="kolor">komponenty z tablicy: komunikacja rodzic (aplikacja) -> dziecko (kompnent) => zmiana dta oraz działanie wewnątrz child</h2>
+        <br>
+        <button @click="add">dodaj 1</button>
+        <br>
+
+        <test-component v-for="digit in digitsArray" v-bind:prop-x="digit"/>
+    </div>
+    <template id="template">
+        <div class="ramka">
+            <h1>from parent: {{propX}}</h1>
+            <h1>comp:{{x}}</h1>
+        </div>
+    </template>
+    <script>
+        const TestComponent= {
+            template : "#template",
+            data(){
+                return { x: this.propX }
+            },
+
+            methods: {
+                add () {
+                    this.x++
+                }
+            },
+
+            props: ["propX"]
+        }
+        Vue.createApp({
+
+            data() {
+                return {
+                   digitsArray: [4, 16, 256]
+                }
+            },
+
+            methods: {
+
+            },
+
+            components: {
+                "test-component":TestComponent
+            }
+
+
+        }).mount("#app")
+
+    </script>
+</body>
+
+</html>

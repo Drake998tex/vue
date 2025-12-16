@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <style>
+        .linia {
+           
+           height: 2px;
+           background-color: green;
+           margin: 7px;
+       }
+
+       #kolor{
+           color: green;
+       }
+       .ramka {
+        border: 3px dotted black;
+        display: inline-block;
+        margin: 7px;
+       }
+    </style>
+</head>
+<body>
+
+    <div id="app">
+        <h1>02. Components</h1>
+        <br>
+        <div class="linia"> </div>
+        <br>
+        <h2 id="kolor">data i template komponentu</h2><br> 
+       
+        <comp-a></comp-a>
+        <comp-a></comp-a>
+        <comp-a></comp-a>
+    </div>
+    <template id="componentTemplate">
+        <div class="ramka">
+            <h1>
+                Moja wizytowka
+            </h1>
+            {{a}}
+            <br>
+            {{b}}
+            <br>
+            {{c}}
+            <br>
+            {{d}}
+        </div>
+       
+    </template>
+    <script>
+      const ComponentA = {
+
+            template: "#componentTemplate",
+
+            data() {
+                return {
+                    a: "Imie: Jan",
+                    b: "Nazwisko: Nowak",
+                    c: "Wiek:30",
+                    d: "Zawod:informatyk",
+                }
+            },
+
+            methods: {
+
+            },
+        };
+        Vue.createApp({
+
+            data() {
+                return {
+                    title: "title"
+                }
+            },
+
+        methods: {
+
+        },
+
+        components:{
+            "comp-a" : ComponentA,
+
+        }
+
+
+        }).mount("#app")
+
+    </script>
+</body>
+</html>

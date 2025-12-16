@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forms Example</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            padding: 20px;
+        }
+
+        h2 {
+            color: #2c3e50;
+        }
+
+        .form-container {
+            background-color: #e0e0e0;
+            padding: 20px;
+            display: flex;
+            gap: 40px;
+            border-radius: 8px;
+        }
+
+        .form-section {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        label {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        select,
+        button {
+            padding: 5px 10px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:disabled {
+            background-color: #999;
+            cursor: not-allowed;
+        }
+
+        .small-text {
+            font-size: 0.9em;
+            color: #333;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <h2>03. Forms</h2>
+        <p style="color:green;">koszyk: form - checkbox, radio, select → v-model</p>
+
+        <div class="form-container">
+            <!-- Akcesoria -->
+            <div class="form-section">
+                <strong>Akcesoria</strong>
+                <label><input type="checkbox" v-model="akcesoria" value="Myszka"> Myszka</label>
+                <label><input type="checkbox" v-model="akcesoria" value="Laptop"> Laptop</label>
+                <label><input type="checkbox" v-model="akcesoria" value="Komputer stacjonarny"> Komputer
+                    stacjonarny</label>
+            </div>
+
+            <!-- Forma odbioru -->
+            <div class="form-section">
+                <strong>Forma odbioru</strong>
+                <label><input type="radio" v-model="formaOdbioru" value="Kurier"> Kurier</label>
+                <label><input type="radio" v-model="formaOdbioru" value="Poczta"> Poczta</label>
+                <label><input type="radio" v-model="formaOdbioru" value="Osobiście"> Osobiście</label>
+
+                <select v-model="formaOdbioru">
+                    <option value="Kurier">Kurier</option>
+                    <option value="Poczta">Poczta</option>
+                    <option value="Osobiście">Osobiście</option>
+                </select>
+                <span class="small-text">Sposób dostawy: {{ formaOdbioru }}</span>
+            </div>
+
+            <!-- Potwierdzenie -->
+            <div class="form-section">
+                <strong>Potwierdzenie</strong>
+                <label>
+                    <input type="checkbox" v-model="potwierdzenie"> Potwierdzam zgodność danych podanych w formularzu
+                    kontaktowym
+                </label>
+                <span class="small-text">{{ potwierdzenie }}</span>
+                <button :disabled="!potwierdzenie" @click="wyslij">Wyślij</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const { createApp } = Vue;
+
+        createApp({
+            data() {
+                return {
+                    akcesoria: [],
+                    formaOdbioru: 'Kurier',
+                    potwierdzenie: false
+                };
+            },
+            methods: {
+                wyslij() {
+                    alert(`Wybrane akcesoria: ${this.akcesoria.join(', ')}\nForma odbioru: ${this.formaOdbioru}\nPotwierdzenie: ${this.potwierdzenie}`);
+                }
+            }
+        }).mount('#app');
+    </script>
+</body>
+
+</html>

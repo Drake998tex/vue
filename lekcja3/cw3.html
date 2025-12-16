@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="UTF-8">
+    <title>03. Events</title>
+
+    <!-- Vue 2 CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            margin: 6px 0;
+        }
+
+        /* e) zmiana css-a dla checkboxów */
+        .active {
+            color: red;
+            font-weight: bold;
+        }
+
+        input[type="text"] {
+            padding: 6px;
+        }
+
+        button {
+            padding: 6px 12px;
+            margin-left: 6px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="app">
+        <h2>03. Events</h2>
+        <p>dodanie nowego elementu do tablicy + zmiana css</p>
+
+        <ul>
+            <!-- f) generowanie checkboxów -->
+            <li v-for="item in items" v-bind:class="{ 'active': item.checked }">
+
+                <!-- b) konstrukcja checkboxów -->
+                <input type="checkbox" v-model="item.checked">
+                {{ item.text }}
+
+            </li>
+        </ul>
+
+        <!-- d) v-on:keyup.enter -->
+        <input type="text" placeholder="dodaj element" v-model="newItem" v-on:keyup.enter="addItem">
+
+        <!-- c) kliknięcie buttona -->
+        <button @click="addItem">add item</button>
+    </div>
+
+    <script>
+        new Vue({
+            el: '#app',
+
+            /* a) tablica w data() */
+            data: {
+                items: [
+                    { text: "element 1", checked: true },
+                    { text: "element 2", checked: false },
+                    { text: "element 3", checked: false }
+                ],
+                newItem: ''
+            },
+
+            methods: {
+                /* c) metoda addItem() */
+                addItem() {
+                    if (this.newItem.trim() !== '') {
+                        this.items.push({
+                            text: this.newItem,
+                            checked: false
+                        })
+                        this.newItem = ''
+                    }
+                }
+            }
+        })
+    </script>
+
+</body>
+
+</html>

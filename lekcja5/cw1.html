@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <style>
+        .com1 {
+
+            display: inline-block;
+            background-color: lime;
+            border: 1px solid black;
+            margin: 7px;
+
+        }
+
+        .com2 {
+
+            display: inline-block;
+            background-color: rebeccapurple;
+            border: 1px solid grey;
+            margin: 7px;
+        }
+
+        .com3 {
+
+            display: inline-block;
+            background-color: royalblue;
+            border: 1px solid green;
+            margin: 7px;
+        }
+
+        .linia {
+
+            height: 2px;
+            background-color: green;
+            margin: 7px;
+        }
+
+        #kolor {
+            color: green;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <h1>01. Components</h1>
+        <br>
+        <div class="linia"> </div>
+        <br>
+        <h2 id="kolor">rejestracja komponentu - components:{}</h2><br>
+
+        <component-a></component-a>
+        <component-a></component-a>
+        <component-a></component-a>
+        <component-b></component-b>
+        <component-c></component-c>
+    </div>
+    <script>
+        const ComponentA = {
+            template: `<div class="com1"><h3>items component</h3></div>`
+        }
+        const ComponentB = {
+            template: `<div class="com2"><h3>change title component</h3></div>`
+        }
+        const ComponentC = {
+            template: `<div class="com3"><h3>add item component</h3></div>`
+        }
+
+
+        Vue.createApp({
+
+            data() {
+                return {
+                    title: "title"
+                }
+            },
+
+            methods: {
+
+            },
+
+            components: {
+                "component-a": ComponentA,
+                "component-b": ComponentB,
+                "component-c": ComponentC
+
+
+            }
+        }).mount("#app")
+
+    </script>
+
+</body>
+
+</html>

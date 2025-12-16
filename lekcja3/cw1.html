@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <style>
+        .h {
+            font-size: 20px;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        }
+
+        .kreska {
+            background-color: green;
+            width: 100%;
+            margin: 10px 0;
+            height: 5px;
+        }
+
+        .green {
+            color: green;
+            font-size: 15px;
+            font-weight: bold;
+        }
+
+        .clickable {
+            cursor: pointer;
+            padding: 10px;
+            background-color: #eee;
+            width: 100px;
+            text-align: center;
+            border: 1px solid #ccc;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <h1 class="h">{{ title }}</h1>
+
+        <div>
+            <div class="kreska"></div>
+            <p class="green">events -> zapis zdarzenia v-on:click jest równoważny @click</p>
+
+            <div style="display: flex;">
+                <div>
+                    <h2>cw 01 - kliknij w diva</h2>
+                    <div class="clickable" @click="onClick">CLICK ME!</div>
+
+                    <h2>cw 02 - wartość (value) z selecta</h2>
+                    <select @change="onChange">
+                        <option value="">[wybierz]</option>
+                        <option value="option 1">option 1</option>
+                        <option value="option 2">option 2</option>
+                    </select>
+                    <p>Wybrana opcja: {{ selectedOption }}</p>
+
+                    <h2>cw 03 - checkbox</h2>
+                    <input type="checkbox" @change="onCheckbox" v-model="checkboxValue">
+                    <p>Checkbox: {{ checkboxValue }}</p>
+
+                    <h2>cw 04 - range</h2>
+                    <input type="range" min="0" max="100" v-model="rangeValue">
+                    <p>Range: {{ rangeValue }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const app = Vue.createApp({
+            data() {
+                return {
+                    title: "01. events - simple",
+                    selectedOption: "",
+                    checkboxValue: false,
+                    rangeValue: 0
+                }
+            },
+            methods: {
+                onClick() {
+                    console.log("CLICK");
+                },
+                onChange(e) {
+                    this.selectedOption = e.target.value;
+                    console.log("Wybrano:", this.selectedOption);
+                },
+                onCheckbox(e) {
+                    console.log("Checkbox:", e.target.checked);
+                }
+            }
+        }).mount("#app");
+    </script>
+</body>
+
+</html>

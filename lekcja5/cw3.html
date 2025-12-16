@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <style>
+        .linia {
+
+            height: 2px;
+            background-color: green;
+            margin: 7px;
+        }
+
+        #kolor {
+            color: green;
+        }
+        .ramka {
+        border: 3px dotted black;
+        display: inline-block;
+        margin: 7px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <h1>03. Components</h1>
+        <br>
+        <div class="linia"> </div>
+        <br>
+        <h2 id="kolor">props -> dane przekazywane do komponentu -> rekcja na brak danych</h2><br>
+
+        <comp-a nazwisko="Kowalski" wiek="30" zawod="slusarz"></comp-a>
+        <comp-a imie="Basia"  wiek="23" zawod="kasjer"></comp-a>
+        <comp-a imie="Zbychu" nazwisko="lewansowski"  zawod="pisarz"></comp-a>
+        <comp-a imie="maciek" nazwisko="ibisz" wiek="18" ></comp-a>
+    
+    </div>
+    <template id="template">
+        <div class="ramka">
+            <p>Imie:{{ this.imie ??"brak" }}</p>
+            <p>Nazwisko:{{ this.nazwisko ? this.nazwisko : "brak" }}</p>
+            <p>Wiek:{{ this.wiek ??"brak"}}</p>
+            <p>Zawod:{{ this.zawod ? this.wiek : "brak"}}</p>
+            <pre>{{JSON.stringify(this.$props, null,5)}}</pre>
+        </div>
+    </template>
+       
+    <script>
+        const ComponentA = {
+
+                template: "#template",
+
+                data() {
+                },
+
+                methods: {
+
+                },
+                props: ["imie", "nazwisko", "wiek", "zawod"]
+            };
+        Vue.createApp({
+
+            data() {
+                return {
+                    title: "title"
+                }
+            },
+
+            methods: {
+
+            },
+
+            components: {
+                "comp-a":ComponentA
+            }
+
+
+        }).mount("#app")
+
+    </script>
+</body>
+
+</html>

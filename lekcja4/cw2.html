@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formularz Vue 3</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        .form-container {
+            display: flex;
+            background-color: #f0f0f0;
+            padding: 20px;
+            border-radius: 8px;
+            gap: 40px;
+        }
+
+        .form-section,
+        .output-section {
+            flex: 1;
+        }
+
+        .form-section input {
+            display: block;
+            width: 100%;
+            margin-bottom: 10px;
+            padding: 8px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+
+        .form-section button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+        }
+
+        .form-section button:disabled {
+            background-color: #aaa;
+            cursor: not-allowed;
+        }
+
+        .output-section p {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <h2>02. Forms</h2>
+        <p>v-model, computed</p>
+
+        <div class="form-container">
+            <div class="form-section">
+                <label>Uzupełnij dane</label>
+                <input type="text" placeholder="Imię i nazwisko" v-model="dane.imie" />
+                <p>Długość: {{ dane.imie.length }}</p>
+
+                <input type="text" placeholder="Wiek" v-model="dane.wiek" />
+                <p>Długość: {{ dane.wiek.length }}</p>
+
+                <input type="text" placeholder="Zawód" v-model="dane.zawod" />
+                <p>Długość: {{ dane.zawod.length }}</p>
+
+                <input type="text" placeholder="Wynagrodzenie" v-model="dane.wynagrodzenie" />
+                <p>Długość: {{ dane.wynagrodzenie.length }}</p>
+
+                <button :disabled="!canSubmit" @click="wyslij">Wyślij</button>
+            </div>
+
+            <div class="output-section">
+                <label>Sprawdź poprawność danych</label>
+                <p>Imię i nazwisko: {{ dane.imie }}</p>
+                <p>Wiek: {{ dane.wiek }}</p>
+                <p>Zawód: {{ dane.zawod }}</p>
+                <p>Wynagrodzenie: {{ dane.wynagrodzenie }}</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const { createApp } = Vue;
+
+        createApp({
+            data() {
+                return {
+                    dane: {
+                        imie: '',
+                        wiek: '',
+                        zawod: '',
+                        wynagrodzenie: ''
+                    }
+                }
+            },
+            computed: {
+                canSubmit() {
+                    return this.dane.imie && this.dane.wiek && this.dane.zawod && this.dane.wynagrodzenie;
+                }
+            },
+            methods: {
+                wyslij() {
+                    alert('Dane wysłane!');
+                }
+            }
+        }).mount('#app');
+    </script>
+</body>
+
+</html>

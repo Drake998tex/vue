@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <style>
+        .b1 {
+            background-color: green;
+            font-weight: bolder;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <form action="/aaa" method="POST" @reset="reset" @submit="submit">
+            <input type="text">
+            <input type="text">
+            <input type="reset" value="reset" class="b1">
+            <input type="submit" value="submit" class="b1">
+            <input type="checkbox" v-model="checked"> Czy mozna edytować?
+            </form>
+            {{checked}}
+    </div>
+   
+    <script>
+         Vue.createApp({
+
+                data() {
+                    return {
+                        title: "title",
+                        checked: false,
+                    }
+                },
+
+                methods: {
+                    // onCheckbox(e) {
+                    //     if(checked == true) checked = false
+                    //     else checked= true
+                    // },
+                    reset(e) {
+                        if(this.checked == true) {
+                            console.log("formularz się nie resetuje")
+                           e.preventDefault();
+                        } 
+                       
+                    },
+                    submit(e) {
+                     
+                        if (this.checked == true) {
+                            e.preventDefault();
+                            console.log("formularz się nie wysyła")
+                        }
+                      
+                    },
+
+                }
+
+
+            }).mount("#app")
+    </script>
+</body>
+</html>
