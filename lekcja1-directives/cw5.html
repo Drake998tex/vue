@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <style>
+        .linia {
+
+            height: 2px;
+            background-color: green;
+            margin: 7px;
+        }
+
+        #kolor {
+            color: green;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <h1>01. Dyrektywy VueJS</h1>
+        <br>
+        <div class="linia"> </div>
+        <br>
+        <h2 id="kolor">{{text}}</h2>
+        <br>
+        <a :href="onet_url">ONET
+        <img v-bind:width="img_width" v-bind:height="img_height" v-bind:src="img_src" />
+    </div>
+    <script>
+        Vue.createApp({
+            data() {
+                return {
+                    text: "Dyrektywa v-bind - działa na atryvutach tagów HTML, ma wersję skróconą (dwukropek :) oraz aktualizacje po zmianie zawartości",
+                     onet_url: "http://onet.pl",
+                    img_width: 200,
+                    img_height: 100,
+                    img_src: "gfx/kanYE.jpg"
+                };
+            },
+        }).mount("#app");
+    </script>
+</body>
+
+</html>

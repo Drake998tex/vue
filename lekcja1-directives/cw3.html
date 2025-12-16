@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <style>
+        .linia {
+
+            height: 2px;
+            background-color: green;
+            margin: 7px;
+        }
+
+        #kolor {
+            color: green;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <h1>03. Dyrektywy VueJS</h1>
+        <br>
+        <div class="linia"> </div>
+        <br>
+        <h2 id="kolor" v-once>{{text}}</h2>
+        <br>
+    </div>
+    <script>
+        Vue.createApp({
+            data() {
+                return {
+                    text: "dyrektywaa v-once- działa raz -> bez aktualizacji wartości ",
+                };
+            },
+        }).mount("#app");
+    </script>
+</body>
+
+</html>

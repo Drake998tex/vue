@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <style>
+        .linia {
+
+            height: 2px;
+            background-color: green;
+            margin: 7px;
+        }
+
+        #kolor {
+            color: green;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <h1>07. Dyrektywy VueJS</h1>
+        <br>
+        <div class="linia"> </div>
+        <br>
+        <h2 id="kolor" v-text="text"></h2>
+        <br>
+        <div :style="{
+            fontSize: fontSize + 'px',
+            color: kEl,
+            backgroundColor: kTla
+        }">
+      blalalala
+    </div>
+    <br>
+    <input type="range" v-model="fontSize" min="20" max="100">
+    <br>
+    <input type="color" v-model="kEl">k elementu
+    <br>
+    <input type="color" v-model="kTla">k tla
+    <script>
+        Vue.createApp({
+            data() {
+                return {
+                    text: "dyrektywaa v-bind- range,color ",
+                    fontSize: 16,
+                    kTla: '#111111',
+                    kEl:'#222222'
+                };
+            },
+        }).mount("#app");
+    </script>
+</body>
+
+</html>

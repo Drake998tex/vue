@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <style>
+        .linia {
+
+            height: 2px;
+            background-color: green;
+            margin: 7px;
+        }
+
+        #kolor {
+            color: green;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <h1>07. Dyrektywy VueJS</h1>
+        <br>
+        <div class="linia"> </div>
+        <br>
+        <h2 id="kolor" v-text="text"></h2>
+        <br>
+        <h2>{{ Math.pow(2,5) }}</h2>
+        <h2>{{ new Date().getTime() }}</h2>
+        <h2>{{ Math.random() }}</h2>
+        <h2>{{x > 5 ? "tak" : "nie"}}</h2>
+        <h2 v-text="y.length < 5 ? 'tak' : 'nie'"></h2>
+    </div>
+    <script>
+        Vue.createApp({
+            data() {
+                return {
+                    text: "dyrektywy umożliwiające dowolne obliczenia, wyrażenia, skrócony if etc ",
+                    x: 100,
+                    y: "test"
+                };
+            },
+        }).mount("#app");
+    </script>
+</body>
+
+</html>

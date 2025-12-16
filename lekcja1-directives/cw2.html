@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <style>
+        .linia {
+
+            height: 2px;
+            background-color: green;
+            margin: 7px;
+        }
+
+        #kolor {
+            color: green;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <h1>02. Dyrektywy VueJS</h1>
+        <br>
+        <div class="linia"> </div>
+        <br>
+        <h2 id="kolor" v-text="text"></h2>
+        <br>
+    </div>
+    <script>
+        Vue.createApp({
+            data() {
+                return {
+                    text: "dyrektywaa v-test zamiast {{}} -> brak interpretacji <b>HTML </b> ale jest aktualizacja po zmianie zawartości ",
+                };
+            },
+        }).mount("#app");
+    </script>
+</body>
+
+</html>

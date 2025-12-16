@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <style>
+        .linia {
+
+            height: 2px;
+            background-color: green;
+            margin: 7px;
+        }
+
+        #kolor {
+            color: green;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <h1>06. Dyrektywy VueJS</h1>
+        <br>
+        <div class="linia"> </div>
+        <br>
+        <h2 id="kolor" v-text="text"></h2>
+        <br>
+        <h2>Komunikat z pola txt: {{ message }}</h2>
+        
+        <input v-model="message" type="text">
+        
+        <h5>Wybrane z selecta: {{ selected }}</h5>
+        
+        <select v-model="selected">
+            <option>aaa</option>
+            <option>bbb</option>
+            <option>ccc</option>
+        </select>
+    </div>
+    <script>
+        Vue.createApp({
+            data() {
+                return {
+                    text: "dyrektywaa v-model- umozliwia dwukierunkowe wiązanie: dane-> interfejs, interfejs -> dane ",
+                    message: "zawartość pola txt",
+                    selected: ""
+                };
+            },
+        }).mount("#app");
+    </script>
+</body>
+
+</html>
