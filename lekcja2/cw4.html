@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <style>
+        .linia {
+
+            height: 2px;
+            background-color: green;
+            margin: 7px;
+        }
+
+        #kolor {
+            color: green;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <h1>04. Funkcje</h1>
+        <br>
+        <div class="linia"> </div>
+        <br>
+        <h2 id="kolor">{{text}}</h2>
+        <br>
+        <h2>To jest tekst: {{cwel}}</h2>
+        <br>
+        <h2>długość tekstu: {{ getTextLength2() }}</h2>
+        <br>
+        <h2>długość tekstu: {{ getTextLength(text) }}</h2>
+        <br>
+        <h2 v-text="getTextLength(text)"></h2>
+        <br>
+        <h2 v-html="getTextLengthWithHTML()"></h2>
+    </div>
+    <script>
+        Vue.createApp({
+            data() {
+                return {
+                    cwel:"kurwy ślizgają się ",
+                    text: "Różne sposoby ich wywoływania",
+                    length:0,
+                };
+            },
+            methods: {
+                 getTextLength(val) {
+                    return val.length
+                },
+                getTextLength2() {
+                    return this.cwel.length
+                },
+                getTextLengthWithHTML() {
+                    return "długość text htnl ziomeczku: " + this.cwel.length
+                },
+                setLength(val) {
+                    this.length = val
+                }
+            }
+        }).mount("#app");
+        
+
+    </script>
+</body>
+
+</html>

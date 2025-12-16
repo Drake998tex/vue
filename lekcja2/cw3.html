@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <style>
+      .linia {
+        height: 2px;
+        background-color: green;
+        margin: 7px;
+      }
+
+      #kolor {
+        color: green;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="app">
+        <h1>03. Pętle</h1>
+        <br />
+        <div class="linia"></div>
+        <br />
+        <h2 id="kolor" v-text="text"></h2>
+        <br />
+        <h3>ul 1 - value key obiektu</h3>
+        <br />
+        
+        <ul>
+            <li v-for="(val, key) in object">{{key}} - {{val}} </li>
+        </ul>
+        <br />
+        
+        <h3>ul 2 - key value index obiektu</h3>
+        <br />
+        <ul>
+            <li v-for="(val, key, index) in object">
+                {{index}} - {{key}} - {{val}}
+            </li>
+        </ul>
+    </div>
+   
+
+    <script>
+      const app = Vue.createApp({
+        data() {
+          return {
+            object: {
+              a: 111,
+              b: 222,
+              c: 333,
+            },
+            text: "dyrektywa v-for, interacja po key, value, indeksie obiektu.",
+          };
+        },
+      }).mount("#app");
+    </script>
+  </body>
+</html>
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+</head>
+
+<body>
+
+    <script>
+        const app = Vue.createApp ({
+            
+        })
+    </script>
+</body>
+
+</html> -->

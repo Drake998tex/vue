@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue - klasy CSS co 2 sekundy</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <style>
+        .red {
+            color: red;
+            font-weight: bold;
+        }
+
+        .blue {
+            color: blue;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <p :class="currentClass">Ten akapit zmienia kolor co 2 sekundy!</p>
+        <button @click="start">Start</button>
+        <button @click="stop">Stop</button>
+    </div>
+
+    <script>
+        const app = Vue.createApp({
+            data() {
+                return {
+                    value: 0,
+                    intervalId: null
+                }
+            },
+            methods: {
+                start() {
+                    if (!this.intervalId) {
+                        this.intervalId = setInterval(() => {
+                            this.value++;
+                        }, 1000); // co 1 sekundę zwiększamy value
+                    }
+                },
+                stop() {
+                    clearInterval(this.intervalId);
+                    this.intervalId = null;
+                }
+            },
+            computed: {
+                currentClass() {
+                    // co 2 sekundy zmieniamy klasę
+                    return Math.floor(this.value / 2) % 2 === 0 ? 'red' : 'blue';
+                }
+            }
+        });
+
+        const vm = app.mount('#app');
+
+        // aby testować z konsoli:
+        window.app = vm;
+    </script>
+</body>
+
+</html>

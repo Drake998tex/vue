@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <style>
+        .linia {
+    
+            height: 2px;
+            background-color: green;
+            margin: 7px;
+        }
+    
+        #kolor {
+            color: green;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <h1>01. Pętle</h1>
+        <br>
+        <div class="linia"> </div>
+        <br>
+        <h2 id="kolor" v-text="text"></h2>
+        <br>
+        <h1>{{c1}}</h1>
+        <br>
+        <ul><li v-for="item in array">{{item}}</li></ul>
+        <hr>
+        <h1>{{c2}}</h1>
+        <br>
+        <ul>
+        <li v-for="item in array2">{{item}}</li>
+        </ul>
+
+    </div>
+    <script>
+        const app = Vue.createApp({
+            data() {
+                return {
+                    array: [1, 2, 3, 4, 5],
+                    array2: ["d", "b", "c", "a"],
+                    text: "Dyrektywa v-for- iteracja po wartościach tablicy- wiązanie dwukierunkowe",
+                    c1: "cw 1",
+                    c2: "cw 2",
+                }
+            }
+
+        }).mount("#app")
+
+        app.title += " of film"
+
+
+
+    </script>
+</body>
+
+</html>

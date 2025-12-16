@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <style>
+      .linia {
+        height: 2px;
+        background-color: green;
+        margin: 7px;
+      }
+
+      #kolor {
+        color: green;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="app">
+      <h1>02. Pętle</h1>
+      <br />
+      <div class="linia"></div>
+      <br />
+      <h2 id="kolor" v-text="text"></h2>
+      <br />
+      <h1>ul 1 - obiekt tablicy</h1>
+      <br />
+      <ul>
+        <li v-for="item in array">{{item}}</li>
+      </ul>
+      <br />
+      <h1>ul 2 - wartość obiektów tablicy</h1>
+      <br />
+      <ul>
+        <li v-for="item in array">{{item.a}} {{item.b}}</li>
+      </ul>
+      <br />
+      <h1>ul 3 - wartosc obiektow tablicy z licznikime</h1>
+      <br />
+      <ul>
+        <li v-for="(item,i) in array">{{i}}: {{item.a}} {{item.b}}</li>
+      </ul>
+    </div>
+
+    <script>
+      const app = Vue.createApp({
+        data() {
+          return {
+            text: "dyrektywa v-for, interacja po elementach tablicy obiektów",
+            array: [
+              { a: 1, b: 4 },
+              { a: 2, b: 5 },
+              { a: 3, b: 6 },
+            ],
+          };
+        },
+      }).mount("#app");
+    </script>
+  </body>
+</html>
